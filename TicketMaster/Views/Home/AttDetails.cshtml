@@ -1,0 +1,95 @@
+﻿@model TicketMaster.Models.Root
+
+<div class="text-center">
+    <div>
+        <img class="AttImage" src="@Model.attraction.images[0].url" />
+    </div>
+
+    <div>
+        <table class="att_header">
+            <tr>
+                <td width="100%"><h2>@Model.attraction.name</h2></td>
+                <td class="icon_item">
+                    @if (Model.attraction.externalLinks != null && Model.attraction.externalLinks.wiki != null)
+                    {
+                        <a href="@Model.attraction.externalLinks.wiki[0].url">
+                            <img class="attr-icons" title="Link to Wiki" src="/images/Cross.png" />
+                        </a>
+                    }
+                </td>
+                <td class="icon_item">
+                    @if (Model.attraction.externalLinks != null && Model.attraction.externalLinks.twitter != null)
+                    {
+                        <a href="@Model.attraction.externalLinks.twitter[0].url">
+                            <img class="attr-icons" title="Link to Twitter" src="/images/Twitter.png" />
+                        </a>
+                    }
+                </td>
+                <td class="icon_item">
+                    @if (Model.attraction.externalLinks != null && Model.attraction.externalLinks.youtube != null)
+                    {
+                        <a href="@Model.attraction.externalLinks.youtube[0].url">
+                            <img class="attr-icons" title="Link to Youtube" src="/images/Arrow.png" />
+                        </a>
+                    }
+                </td>
+                <td class="icon_item">
+                    @if (Model.attraction.externalLinks != null && Model.attraction.externalLinks.facebook != null)
+                    {
+                        <a href="@Model.attraction.externalLinks.facebook[0].url">
+                            <img class="attr-icons" title="Link to FaceBook" src="/images/Facebook.png" />
+                        </a>
+                    }
+                </td>
+                <td class="icon_item">
+                    @if (Model.attraction.externalLinks != null && Model.attraction.externalLinks.instagram != null)
+                    {
+                        <a href="@Model.attraction.externalLinks.instagram[0].url">
+                            <img class="attr-icons" title="Link to Instagram" src="/images/Wave.png" />
+                        </a>
+                    }
+                </td>
+                <td class="icon_item">
+                    @if (Model.attraction.externalLinks != null && Model.attraction.externalLinks.homepage != null)
+                    {
+                        <a href="@Model.attraction.externalLinks.homepage[0].url">
+                            <img class="attr-icons" title="Link to Home Page" src="/images/website_icon.png" />
+                        </a>
+                    }
+                </td>
+            </tr>
+        </table>
+
+        @if (Model.page.totalElements == 0)
+        {
+            <div class="noresults">
+                <div class="noresults_content">
+                    <img src="/images/sadface_icon.png" />
+                    <h2 class="resultsalert">No Events Found</h2>
+                </div>
+            </div>
+        }
+        @if (Model._embedded != null)
+        {
+            <ul class="list-group">
+                @foreach (var Event in Model._embedded.events)
+                {
+                    <li class="list-event-item" id="@Event.id">
+                        <table width="100%">
+                            <tr>
+                                <td width="20%"><img class="list-event-image" src="@Event.images[0].url" /></td>
+                                <td width="80%">
+                                    @{ var parsedDate = DateTime.Parse(Event.dates.Start.LocalDate);}
+                                    <h3>@parsedDate.ToString("dddd, MMMM dd, yyyy")</h3>
+                                    <h2 class="list-group-item-heading">@Event.shortName()</h2>
+                                    <h3>@Event._embedded.venues[0].name, @Event._embedded.venues[0].city.Name, @Event._embedded.venues[0].state.stateCode</h3>
+                                </td>
+                            </tr>
+                        </table>
+                    </li>
+                    <br />
+                }
+            </ul>
+        }
+    </div>
+</div>

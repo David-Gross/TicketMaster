@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <div class="divSplash">
+        <img src="/images/ET_Logo_stacked.png" />
+    </div>
+    <div class="searchnav">
+        <div class="searchinput">
+            <img src="/images/search_icon.png" />
+            <input type="text" id="keyword" value="Phish" onkeydown="checkHitEnter(this)">
+        </div>
+        <div class="standardbtn">
+            <button type="button" onclick="Search()">Submit</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    setTimeout(function () {
+        $('.divSplash').fadeOut();
+    }, 4000);
+</script>

@@ -1,0 +1,56 @@
+﻿@model TicketMaster.Models.Root
+
+    <input type="hidden" id="AttractionId" value="">
+    <div class="text-center">
+        <div class="searchnav">
+            <div class="searchinput">
+                <img src="/images/search_icon.png" />
+                <input type="text" id="keyword" value="Phish" onkeydown="checkHitEnter(this)">
+            </div>
+            <div class="standardbtn">
+                <button type="button" onclick="Search()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.page.totalElements == 0)
+    {
+        <div class="noresults">
+            <div class="noresults_content">
+                <img src="/images/sadface_icon.png" />
+                <h2 class="resultsalert">No Results Found</h2>
+            </div>
+        </div>
+    }
+
+
+    <ul class="list-group">
+        @foreach (var Attraction in Model._embedded.attractions)
+        {
+            <li class="list-group-item" id="@Attraction.id" onclick="highLight(this);">
+                <table width="100%">
+                    <tr>
+                        <td width="20%"><img class="list-group-image" src="@Attraction.images[0].url" /></td>
+                        <td width="80%"><h4 class="list-group-item-heading">@Attraction.name</h4></td>
+                    </tr>
+                </table>
+                @*Store the attraction image so we don't need to make a second api call to attractions endpoint'*@
+                <input type="hidden" id="img_@Attraction.id"value="@Attraction.images[0].url">
+                <br />
+            </li>
+        }
+    </ul>
+
+    <div class="text-center">
+        <div class="searchnav">
+            <div class="standardbtn">
+                <button id="btnAttraction" type="button" onclick="showAttraction()" disabled>Select</button>
+            </div>
+        </div>
+    </div>
+
+        <script>
+        window.onload = function () {
+            $("#keyword").val("@Model.keyword");
+        };
+        </script>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\dgros\source\repos\TicketMaster\TicketMaster\bin\Release\net5.0\publish\</_PublishTargetUrl>
+    <History>True|2025-04-12T01:40:47.6945589Z;True|2025-04-11T21:36:22.0101508-04:00;</History>
+  </PropertyGroup>
+</Project>
