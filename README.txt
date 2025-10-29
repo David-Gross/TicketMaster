@@ -1,4 +1,3 @@
-﻿Tech Assessment for David Gross
 
 Project: Ticketmaster API mobile app for searching attractions and listing events.
 
